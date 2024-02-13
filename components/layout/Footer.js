@@ -4,7 +4,7 @@ import { AiOutlineArrowUp } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <div className="flex flex-col bg-black text-white px-[2rem] md:px-0 w-full pt-16 pb-6">
+    <div className="flex flex-col bg-gray-900 text-white px-[2rem] md:px-0 w-full pt-16 pb-6">
       <div className="grid grid-cols-2 place-items-center md:place-items-start md:grid-cols-4 w-full max-w-screen-xl mx-auto">
         <div className="flex flex-col gap-4 pl-14 md:pl-[6rem]">
           <img src="" alt="footer" className="w-[15rem] mb-4" />

@@ -2,26 +2,33 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <section className="relative bg-cover bg-banner bg-center bg-no-repeat">
-      <div className="absolute inset-0 bg-black bg-opacity-50 sm:bg-gradient-to-r"></div>
-
-      <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
-        <div className="max-w-xl text-center md:text-left">
-          <h1 className="text-3xl text-white font-extrabold sm:text-5xl">
-            Softkeys
-            <strong className="block font-extrabold text-white">Hub</strong>
+    <section className="bg-gray-900 text-white">
+      <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+            Elevate Your Software Experience.
+            <span className="sm:block">Discover, Engage, Convert. </span>
           </h1>
 
-          <p className="mt-4 max-w-lg text-white sm:text-xl/relaxed">
-            Your favorite home for all Games and Softwares!
+          <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+            Revolutionize the way you explore and acquire software and games.
+            Our platform is designed to provide a seamless user experience,
+            ensuring you find, engage, and convert effortlessly!
           </p>
 
-          <div className="mt-8 text-center md:text-left">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <a
-              href="#"
-              className="w-fit rounded bg-white text-black px-12 py-3 text-sm font-medium shadow hover:bg-black hover:text-white focus:outline-none focus:ring"
+              className="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+              href="/get-started"
             >
-              Buy Now
+              Get Started
+            </a>
+
+            <a
+              className="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+              href="/about"
+            >
+              Learn More
             </a>
           </div>
         </div>

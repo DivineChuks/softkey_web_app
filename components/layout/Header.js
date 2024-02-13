@@ -5,24 +5,26 @@ import { FiMenu } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { FaTimes } from "react-icons/fa";
 import { BiSolidChevronDown } from "react-icons/bi";
+import { IoCart } from "react-icons/io5";
+import CartModal from "../payment/CartModal";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
   return (
     <div className="bg-white text-black sticky h-20 z-50 top-0 p-4 flex items-center">
+      {showCart && <CartModal />}
       <div className="container mx-auto flex justify-between items-center">
-        <div>
-          <Link href="/">
-            <img src="/logo.png" alt="Logo" className="h-8" />
-          </Link>
-        </div>
+        <Link href="/">
+          <img src="/logo.png" alt="Logo" className="w-48 mt-3" />
+        </Link>
         <input
-          className="w-1/2 rounded-full border border-gray-400 focus:outline-none px-3 py-2"
+          className="w-[400px] rounded-full border border-gray-400 focus:outline-none px-3 py-2"
           placeholder="Search Games or Softwares"
         />
-        <div className="hidden md:flex text-black text-base gap-6">
+        <div className="hidden md:flex text-black items-center text-base gap-6">
           <Link href="/">Home</Link>
           <div className="relative">
             <div
@@ -37,6 +39,9 @@ const Header = () => {
                 <Link href="/games">Games</Link>
               </div>
             )}
+          </div>
+          <div className="cursor-pointer" onClick={() => setShowCart(true)}>
+            <IoCart size={20} />
           </div>
           <Link href="/register">Register</Link>
           <Link href="/login" className="flex items-center gap-2">
@@ -81,6 +86,7 @@ const Header = () => {
                 <Link href="/">Home</Link>
                 <Link href="/softwares">Software</Link>
                 <Link href="/games">Games</Link>
+                <IoCart />
                 <Link href="/register">Register</Link>
                 <Link href="/login" className="flex items-center gap-2">
                   <CgProfile />

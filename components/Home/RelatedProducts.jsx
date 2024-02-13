@@ -2,19 +2,14 @@ import React from "react";
 import { BiCategory } from "react-icons/bi";
 import { FaArrowRight } from "react-icons/fa";
 
-const SoftwareCollection = () => {
+const RelatedProducts = () => {
   return (
     <section>
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-        <div className="w-full flex justify-between mb-8">
-          <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
-            Best Selling Softwares
+      <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 sm:py-12 lg:px-8">
+        <div className="w-full flex justify-between">
+          <h2 className="text-xl mb-8 font-bold text-gray-900 sm:text-3xl">
+            Related Products
           </h2>
-
-          <button className="mt-4 max-w-md py-2 px-4 flex items-center gap-1 text-white bg-blue-600">
-            View all collections
-            <FaArrowRight />
-          </button>
         </div>
 
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -43,7 +38,7 @@ const SoftwareCollection = () => {
               </button>
 
               <img
-                src="/winOne.webp"
+                src="/softOne.jpg"
                 alt=""
                 className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
               />
@@ -55,14 +50,9 @@ const SoftwareCollection = () => {
                   </h3>
                   <p className="text-lg text-blue-600 font-bold">$34.99</p>
                 </div>
-                <div className="flex justify-between mt-4 items-center">
-                  <div className="flex gap-1 items-center">
-                    <BiCategory />
-                    <p>Software</p>
-                  </div>
-                  <button className="bg-blue-600 text-white rounded-sm px-2 py-1">
-                    Add To Cart
-                  </button>
+                <div className="flex gap-1 items-center mt-2">
+                  <BiCategory />
+                  <p>Software</p>
                 </div>
               </div>
             </a>
@@ -104,14 +94,9 @@ const SoftwareCollection = () => {
                   </h3>
                   <p className="text-lg text-blue-600 font-bold">$16.99</p>
                 </div>
-                <div className="flex justify-between items-center mt-4">
-                  <div className="flex gap-1 items-center">
-                    <BiCategory />
-                    <p>Software</p>
-                  </div>
-                  <button className="bg-blue-600 text-white rounded-sm px-2 py-1">
-                    Add To Cart
-                  </button>
+                <div className="flex gap-1 items-center mt-2">
+                  <BiCategory />
+                  <p>Software</p>
                 </div>
               </div>
             </a>
@@ -141,7 +126,7 @@ const SoftwareCollection = () => {
               </button>
 
               <img
-                src="/winThree.jpg"
+                src="/softThree.jpg"
                 alt=""
                 className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
               />
@@ -153,14 +138,9 @@ const SoftwareCollection = () => {
                   </h3>
                   <p className="text-lg text-blue-600 font-bold">$14.99</p>
                 </div>
-                <div className="flex justify-between items-center mt-4">
-                  <div className="flex gap-1 items-center">
-                    <BiCategory />
-                    <p>Softwares</p>
-                  </div>
-                  <button className="bg-blue-600 text-white rounded-sm px-2 py-1">
-                    Add To Cart
-                  </button>
+                <div className="flex gap-1 items-center mt-2">
+                  <BiCategory />
+                  <p>Softwares</p>
                 </div>
               </div>
             </a>
@@ -190,7 +170,7 @@ const SoftwareCollection = () => {
               </button>
 
               <img
-                src="/winTwo.jpg"
+                src="/softFour.jpg"
                 alt=""
                 className="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
               />
@@ -202,14 +182,9 @@ const SoftwareCollection = () => {
                   </h3>
                   <p className="text-lg text-blue-600 font-bold">$14.99</p>
                 </div>
-                <div className="flex justify-between items-center mt-4">
-                  <div className="flex gap-1 items-center">
-                    <BiCategory />
-                    <p>Softwares</p>
-                  </div>
-                  <button className="bg-blue-600 text-white rounded-sm px-2 py-1">
-                    Add To Cart
-                  </button>
+                <div className="flex gap-1 items-center mt-2">
+                  <BiCategory />
+                  <p>Softwares</p>
                 </div>
               </div>
             </a>
@@ -220,4 +195,4 @@ const SoftwareCollection = () => {
   );
 };
 
-export default SoftwareCollection;
+export default RelatedProducts;
