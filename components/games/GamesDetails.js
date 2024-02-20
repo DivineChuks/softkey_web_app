@@ -86,22 +86,22 @@ const GameDetails = ({ categoryName }) => {
           ))}
         </ul>
         <ReactPaginate
-          breakLabel={<span className="mr-4">...</span>}
+          breakLabel={<span className="mr-3">...</span>}
           nextLabel={
-            <span className="ml-4 flex h-8 w-8 items-center justify-center rounded-md bg-black text-white">
+            <span className="ml-4 flex h-7 w-7 items-center justify-center rounded-md bg-black text-white">
               <BsChevronRight />
             </span>
           }
           pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
+          //   marginPagesDisplayed={2}
+          //   pageRangeDisplayed={5}
           onPageChange={handlePageClick}
           previousLabel={
-            <span className="mr-4 flex h-8 w-8 items-center justify-center rounded-md bg-black text-white">
+            <span className="mr-4 flex h-7 w-7 items-center justify-center rounded-md bg-black text-white">
               <BsChevronLeft />
             </span>
           }
-          pageClassName="border border-blue-500 hover:bg-blue-500 hover:text-white w-8 h-8 flex justify-center items-center rounded-md mr-4"
+          pageClassName="border border-blue-500 hover:bg-blue-500 hover:text-white w-7 h-7 flex justify-center items-center rounded-md mr-3"
           containerClassName="flex items-center justify-center mt-8 mb-4"
           activeClassName="bg-blue-500 text-white"
         />

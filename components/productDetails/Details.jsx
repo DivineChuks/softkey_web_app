@@ -79,7 +79,7 @@ const Details = ({ productId }) => {
           <div className="col-span-1 px-8">
             <h2 className="text-3xl">{productDetails?.name}</h2>
             <hr className=" my-3" />
-            <p className="text-base line-clamp-7">
+            <p className="text-base line-clamp-6">
               {productDetails?.description}
             </p>
             <p className="text-xl text-blue-600 font-bold my-5">
