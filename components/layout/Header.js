@@ -1,32 +1,56 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { FaTimes } from "react-icons/fa";
 import { BiSolidChevronDown } from "react-icons/bi";
 import { IoCart } from "react-icons/io5";
 import CartModal from "../payment/CartModal";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathName = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [showCart, setShowCart] = useState(false);
 
+  const isActive = () => {
+    window.scrollY > 0 ? setActive(true) : setActive(false);
+  };
+
+  const navStyle = active
+    ? "bg-white text-black shadow shadow-md"
+    : "bg-gray-900 text-white";
+
+  useEffect(() => {
+    window.addEventListener("scroll", isActive);
+    return () => {
+      window.removeEventListener("scroll", isActive);
+    };
+  }, []);
+
   return (
-    <div className="bg-white text-black sticky h-20 z-50 top-0 p-4 flex items-center">
+    <div
+      className={`${navStyle} sticky h-[70px] z-50 top-0 p-4 flex items-center`}
+    >
       {showCart && <CartModal />}
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
-          <img src="/logo.png" alt="Logo" className="w-48 mt-3" />
+          <img
+            src={active ? "logoblack.png" : "logowhite.png"}
+            alt="Logo"
+            className="w-28 h-[80px] mt-3 object-cover"
+          />
         </Link>
-        <input
-          className="w-[400px] rounded-full border border-gray-400 focus:outline-none px-3 py-2"
-          placeholder="Search Games or Softwares"
-        />
-        <div className="hidden md:flex text-black items-center text-base gap-6">
+        <div className="hidden text-lg md:flex items-center gap-6">
           <Link href="/">Home</Link>
-          <div className="relative">
+          <Link href="/softwares">Softwares</Link>
+          <Link href="/games">Games</Link>
+        </div>
+        <div className="hidden md:flex items-center text-lg gap-6">
+          {/* <div className="relative">
             <div
               className="cursor-pointer flex items-center"
               onClick={() => setIsCategoryOpen(!isCategoryOpen)}
@@ -39,11 +63,22 @@ const Header = () => {
                 <Link href="/games">Games</Link>
               </div>
             )}
-          </div>
+          </div> */}
           <div className="cursor-pointer" onClick={() => setShowCart(true)}>
-            <IoCart size={20} />
+            <IoCart size={25} />
           </div>
-          <Link href="/register">Register</Link>
+          <Link
+            className="bg-blue-500 px-3 py-1 rounded-md text-white"
+            href="/register"
+          >
+            Register
+          </Link>
+          <Link
+            className="bg-transparent border border-blue-500 rounded-md px-3 py-1 hover:bg-blue-500 hover:text-white text-blue-500"
+            href="/login"
+          >
+            Login
+          </Link>
           <Link href="/login" className="flex items-center gap-2">
             <CgProfile />
             Profile
@@ -87,7 +122,12 @@ const Header = () => {
                 <Link href="/softwares">Software</Link>
                 <Link href="/games">Games</Link>
                 <IoCart />
-                <Link href="/register">Register</Link>
+                <Link
+                  className="bg-blue-500 px-3 py-1 rounded-md text-white"
+                  href="/register"
+                >
+                  Register
+                </Link>
                 <Link href="/login" className="flex items-center gap-2">
                   <CgProfile />
                   Profile

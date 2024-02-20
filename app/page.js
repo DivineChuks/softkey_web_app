@@ -12,7 +12,7 @@ const page = () => {
       <Banner />
       <GamesCollection />
       <SoftwareCollection />
-      <WhyChooseUs />
+      {/* <WhyChooseUs /> */}
       <Subscribe />
     </>
   );
