@@ -1,6 +1,6 @@
 "use client";
-import Details from "@/components/productDetails/Details";
-import ProductCrumb from "@/components/productDetails/ProductCrumb";
+import Details from "../../../components/productDetails/Details";
+import ProductCrumb from "../../../components/productDetails/ProductCrumb";
 import { useParams } from "next/navigation";
 import React from "react";
 

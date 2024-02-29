@@ -1,5 +1,5 @@
-import GameDetails from "@/components/games/GamesDetails";
-import ProductCrumb from "@/components/productDetails/ProductCrumb";
+import GameDetails from "../../components/games/GamesDetails";
+import ProductCrumb from "../../components/productDetails/ProductCrumb";
 import React from "react";
 
 const GamesPage = () => {

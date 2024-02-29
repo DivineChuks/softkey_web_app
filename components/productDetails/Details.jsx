@@ -1,13 +1,30 @@
 "use client";
-import Image from "next/image";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import React, { useEffect, useState } from "react";
 import RelatedProducts from "../Home/RelatedProducts";
-import { client, urlFor } from "@/app/lib/sanity";
+import { client, urlFor } from "../../app/lib/sanity";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useUser } from "@clerk/nextjs";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/slices/cartSlice";
+import useStripeCheckout from "../hooks/useStripeCheckout";
 
 const Details = ({ productId }) => {
+  const dispatch = useDispatch();
+  const { user } = useUser();
   const [productDetails, setProductDetails] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const handleCheckout = useStripeCheckout();
+
+  const handleAddToCart = (product) => {
+    if (!user) {
+      router.push("/sign-in");
+    } else {
+      dispatch(addToCart(product));
+      toast.success("product added to cart!");
+    }
+  };
 
   useEffect(() => {
     // Ensure that the parameter names match exactly
@@ -64,33 +81,50 @@ const Details = ({ productId }) => {
   }, [productId]); // Dependency array to re-run the effect if productId changes
   console.log("relatedProducts--->", relatedProducts);
 
+  const handleBuyNowClick = (item) => {
+    if (!user) {
+      router.push("/sign-in");
+    } else {
+      // Add quantity to the game object before checkout
+      const productWithQuantity = { ...item, quantity: 1 };
+      handleCheckout(productWithQuantity);
+    }
+  };
+
   return (
     <div className="flex bg-white flex-col w-full py-20">
+      <ToastContainer />
       <div className="mx-auto max-w-screen-xl w-full">
         <div className="p-4 grid grid-cols md:grid-cols-2 gap-4 items-center">
           <div className="col-span-1">
             {productDetails.imageUrl && (
               <img
                 src={urlFor(productDetails.imageUrl).url()}
-                className="w-full h-[450px] object-cover"
+                className="w-full h-[450px] object-cover rounded-md"
               />
             )}
           </div>
           <div className="col-span-1 px-8">
-            <h2 className="text-3xl">{productDetails?.name}</h2>
+            <h2 className="text-3xl font-semibold">{productDetails?.name}</h2>
             <hr className=" my-3" />
-            <p className="text-base line-clamp-6">
+            <p className="text-base line-clamp-6 text-gray-500 tracking-wide">
               {productDetails?.description}
             </p>
             <p className="text-xl text-blue-600 font-bold my-5">
-              ${productDetails?.price}
+              ${productDetails?.price?.toFixed(2)}
             </p>
             <div className="flex gap-2">
-              <button className="flex gap-1 bg-blue-500 px-4 rounded-md text-white py-2 items-center text-lg">
+              <button
+                onClick={() => handleAddToCart(productDetails)}
+                className="flex gap-1 bg-blue-500 px-4 rounded-md text-white py-2 items-center text-lg"
+              >
                 <MdOutlineShoppingCart /> Add To Cart
               </button>
-              <button className="px-4 py-2 bg-red-500 border text-lg rounded-md text-white ">
-                Checkout
+              <button
+                onClick={() => handleBuyNowClick(productDetails)}
+                className="px-4 py-2 bg-purple-500 border text-lg rounded-md text-white "
+              >
+                Checkout Now
               </button>
             </div>
           </div>

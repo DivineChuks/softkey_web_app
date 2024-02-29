@@ -6,15 +6,20 @@ import { CgProfile } from "react-icons/cg";
 import { FaTimes } from "react-icons/fa";
 import { BiSolidChevronDown } from "react-icons/bi";
 import { IoCart } from "react-icons/io5";
+import { useUser, UserButton } from "@clerk/nextjs";
 import CartModal from "../payment/CartModal";
-import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const pathName = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const cartItems = useSelector((state) => state.cart.cartItems);
   const [showCart, setShowCart] = useState(false);
+
+  const { user } = useUser();
+
+  console.log("user--->", user);
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -35,7 +40,6 @@ const Header = () => {
     <div
       className={`${navStyle} sticky h-[70px] z-50 top-0 p-4 flex items-center`}
     >
-      {showCart && <CartModal />}
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
           <img
@@ -48,6 +52,7 @@ const Header = () => {
           <Link href="/">Home</Link>
           <Link href="/softwares">Softwares</Link>
           <Link href="/games">Games</Link>
+          <Link href="/games">Blogs</Link>
         </div>
         <div className="hidden md:flex items-center text-lg gap-6">
           {/* <div className="relative">
@@ -64,25 +69,36 @@ const Header = () => {
               </div>
             )}
           </div> */}
-          <div className="cursor-pointer" onClick={() => setShowCart(true)}>
+          <div
+            className="cursor-pointer relative"
+            onClick={() => setShowCart(!showCart)}
+          >
             <IoCart size={25} />
+            <div className="absolute top-[-8px] right-[-8px] text-[12px] flex justify-center items-center rounded-full bg-blue-500 text-white w-[18px] h-[18px] p-2">
+              {cartItems?.length}
+            </div>
           </div>
-          <Link
-            className="bg-blue-500 px-3 py-1 rounded-md text-white"
-            href="/register"
-          >
-            Register
-          </Link>
-          <Link
-            className="bg-transparent border border-blue-500 rounded-md px-3 py-1 hover:bg-blue-500 hover:text-white text-blue-500"
-            href="/login"
-          >
-            Login
-          </Link>
-          <Link href="/login" className="flex items-center gap-2">
-            <CgProfile />
-            Profile
-          </Link>
+          {user ? (
+            <div className="flex gap-2 items-center">
+              <UserButton afterSignOutUrl="/" />
+              <h3>{user?.firstName}</h3>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Link
+                className="bg-blue-500 px-3 py-1 rounded-md text-white"
+                href="/sign-up"
+              >
+                Register
+              </Link>
+              <Link
+                className="bg-transparent border border-blue-500 rounded-md px-3 py-1 hover:bg-blue-500 hover:text-white text-blue-500"
+                href="/sign-in"
+              >
+                Login
+              </Link>
+            </div>
+          )}
         </div>
         <div className="md:hidden">
           <button className="cursor-pointer" onClick={() => setIsOpen(true)}>
@@ -121,22 +137,32 @@ const Header = () => {
                 <Link href="/">Home</Link>
                 <Link href="/softwares">Software</Link>
                 <Link href="/games">Games</Link>
+                <Link href="/games">Blogs</Link>
                 <IoCart />
-                <Link
-                  className="bg-blue-500 px-3 py-1 rounded-md text-white"
-                  href="/register"
-                >
-                  Register
-                </Link>
-                <Link href="/login" className="flex items-center gap-2">
-                  <CgProfile />
-                  Profile
-                </Link>
+                {user ? (
+                  <UserButton afterSignOutUrl="/" />
+                ) : (
+                  <div className="flex items-center gap-3">
+                    <Link
+                      className="bg-blue-500 px-3 py-1 rounded-md text-white"
+                      href="/sign-up"
+                    >
+                      Register
+                    </Link>
+                    <Link
+                      className="bg-transparent border border-blue-500 rounded-md px-3 py-1 hover:bg-blue-500 hover:text-white text-blue-500"
+                      href="/sign-in"
+                    >
+                      Login
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
+      {showCart && <CartModal showCart={showCart} setShowCart={setShowCart} />}
     </div>
   );
 };
