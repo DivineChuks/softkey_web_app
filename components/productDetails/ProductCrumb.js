@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const ProductCrumb = ({ title }) => {
   return (
-    <div className="bg-[#f6f6f6] px-8 py-[20px] mb-[40px]">
+    <div className="px-8 py-[20px] mb-[40px]">
       <div className="mx-auto max-w-[1280px]">
         <div className="relative flex h-[150px] flex-col items-center justify-center bg-crumb mb-3 bg-cover bg-center text-white">
           <div className="absolute inset-0 z-10 w-full bg-[#000000b1]"></div>

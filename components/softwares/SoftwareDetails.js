@@ -111,13 +111,13 @@ const SoftwareDetails = ({ categoryName }) => {
                 <div className="flex justify-between mt-4 items-center">
                   <button
                     onClick={() => handleBuyNowClick(item)}
-                    className="bg-purple-600 text-white rounded-sm px-2 py-1"
+                    className="bg-purple-600 text-white rounded-md px-3 py-2"
                   >
                     Buy Now
                   </button>
                   <button
                     onClick={() => handleAddToCart(item)}
-                    className="bg-blue-600 text-white rounded-sm px-2 py-1"
+                    className="bg-blue-600 text-white rounded-md px-3 py-2"
                   >
                     Add To Cart
                   </button>

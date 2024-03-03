@@ -50,7 +50,7 @@ const RelatedProducts = ({ products }) => {
                   className="h-64 w-full object-cover rounded-t-md overflow-hidden transition duration-500 group-hover:scale-105 sm:h-72"
                 />
               </Link>
-              <div className="relative border border-gray-100 bg-gray-100 py-6 px-3 flex flex-col gap-2 rounded-b-md">
+              <div className="relative border border-gray-100 bg-gray-100 pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
                 <Link
                   Link
                   href={`/product-details/${item?._id}`}
@@ -66,13 +66,13 @@ const RelatedProducts = ({ products }) => {
                 <div className="flex justify-between mt-4 items-center">
                   <button
                     onClick={() => handleBuyNowClick(item)}
-                    className="bg-red-600 text-white rounded-md px-2 py-1"
+                    className="bg-red-600 text-white rounded-md px-3 py-2"
                   >
                     Buy Now
                   </button>
                   <button
                     onClick={() => handleAddToCart(item)}
-                    className="bg-blue-600 text-white rounded-md px-2 py-1"
+                    className="bg-blue-600 text-white rounded-md px-3 py-2"
                   >
                     Add To Cart
                   </button>

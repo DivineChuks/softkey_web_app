@@ -58,20 +58,23 @@ const GamesCollection = () => {
       <ToastContainer />
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <div className="w-full flex justify-between mb-8">
-          <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
+          <h2 className="hidden md:block text-2xl font-bold text-gray-900 sm:text-3xl">
             Best Selling Games
+          </h2>
+          <h2 className="md:hidden block text-2xl font-bold text-gray-900 sm:text-3xl">
+            Best Selling<br></br> Games
           </h2>
 
           <Link
             href="/games"
-            className="mt-4 max-w-md py-2 px-4 flex items-center gap-1 text-white bg-blue-600"
+            className="max-w-md py-2 h-fit px-4 rounded-md flex items-center gap-1 text-white bg-blue-600"
           >
             View all collections
             <FaArrowRight />
           </Link>
         </div>
 
-        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {Games?.map((game, index) => (
             <div key={index}>
               <Link href={`product-details/${game?._id}`}>
@@ -96,13 +99,13 @@ const GamesCollection = () => {
                 <div className="flex justify-between mt-4 items-center">
                   <button
                     onClick={() => handleBuyNowClick(game)}
-                    className="bg-purple-600 text-white rounded-md px-2 py-1"
+                    className="bg-purple-600 text-white rounded-md px-3 py-2"
                   >
                     Buy Now
                   </button>
                   <button
                     onClick={() => handleAddToCart(game)}
-                    className="bg-blue-600 text-white rounded-md px-2 py-1"
+                    className="bg-blue-600 text-white rounded-md px-3 py-2"
                   >
                     Add To Cart
                   </button>

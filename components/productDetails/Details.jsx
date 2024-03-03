@@ -92,11 +92,11 @@ const Details = ({ productId }) => {
   };
 
   return (
-    <div className="flex bg-white flex-col w-full py-20">
+    <div className="flex bg-white flex-col w-full py-10 md:py-20">
       <ToastContainer />
       <div className="mx-auto max-w-screen-xl w-full">
         <div className="p-4 grid grid-cols md:grid-cols-2 gap-4 items-center">
-          <div className="col-span-1">
+          <div className="col-span-2 md:col-span-1">
             {productDetails.imageUrl && (
               <img
                 src={urlFor(productDetails.imageUrl).url()}
@@ -104,7 +104,7 @@ const Details = ({ productId }) => {
               />
             )}
           </div>
-          <div className="col-span-1 px-8">
+          <div className="col-span-2 md:col-span-1 px-2 md:px-8">
             <h2 className="text-3xl font-semibold">{productDetails?.name}</h2>
             <hr className=" my-3" />
             <p className="text-base line-clamp-6 text-gray-500 tracking-wide">
@@ -113,7 +113,7 @@ const Details = ({ productId }) => {
             <p className="text-xl text-blue-600 font-bold my-5">
               ${productDetails?.price?.toFixed(2)}
             </p>
-            <div className="flex gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
               <button
                 onClick={() => handleAddToCart(productDetails)}
                 className="flex gap-1 bg-blue-500 px-4 rounded-md text-white py-2 items-center text-lg"
@@ -130,7 +130,7 @@ const Details = ({ productId }) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mt-4">
         <RelatedProducts products={relatedProducts} />
       </div>
     </div>

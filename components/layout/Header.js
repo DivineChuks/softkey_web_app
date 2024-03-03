@@ -52,7 +52,7 @@ const Header = () => {
           <Link href="/">Home</Link>
           <Link href="/softwares">Softwares</Link>
           <Link href="/games">Games</Link>
-          <Link href="/games">Blogs</Link>
+          <Link href="/blogs">Blogs</Link>
         </div>
         <div className="hidden md:flex items-center text-lg gap-6">
           {/* <div className="relative">
@@ -124,7 +124,11 @@ const Header = () => {
                   className="cursor-pointer p-0"
                   onClick={() => setIsOpen(false)}
                 >
-                  <img src="logo" alt="site logo" />
+                  <img
+                    src="/logowhite.png"
+                    className="w-16 h-16 object-cover"
+                    alt="site logo"
+                  />
                 </div>
                 <div
                   className="p-4 cursor-pointer"
@@ -134,11 +138,27 @@ const Header = () => {
                 </div>
               </div>
               <div className="flex flex-col text-white gap-6 h-full">
-                <Link href="/">Home</Link>
-                <Link href="/softwares">Software</Link>
-                <Link href="/games">Games</Link>
-                <Link href="/games">Blogs</Link>
-                <IoCart />
+                <Link href="/" onClick={() => setIsOpen(false)}>
+                  Home
+                </Link>
+                <Link href="/softwares" onClick={() => setIsOpen(false)}>
+                  Software
+                </Link>
+                <Link href="/games" onClick={() => setIsOpen(false)}>
+                  Games
+                </Link>
+                <Link href="/blogs" onClick={() => setIsOpen(false)}>
+                  Blogs
+                </Link>
+                <div
+                  className="cursor-pointer relative w-8"
+                  onClick={() => setShowCart(!showCart)}
+                >
+                  <IoCart size={25} />
+                  <div className="absolute top-0 right-[-10px] md:top-[-8px] md:right-[-8px] text-[12px] flex justify-center items-center rounded-full bg-blue-500 text-white w-[18px] h-[18px] p-2">
+                    {cartItems?.length}
+                  </div>
+                </div>
                 {user ? (
                   <UserButton afterSignOutUrl="/" />
                 ) : (
@@ -146,12 +166,14 @@ const Header = () => {
                     <Link
                       className="bg-blue-500 px-3 py-1 rounded-md text-white"
                       href="/sign-up"
+                      onClick={() => setIsOpen(false)}
                     >
                       Register
                     </Link>
                     <Link
                       className="bg-transparent border border-blue-500 rounded-md px-3 py-1 hover:bg-blue-500 hover:text-white text-blue-500"
                       href="/sign-in"
+                      onClick={() => setIsOpen(false)}
                     >
                       Login
                     </Link>

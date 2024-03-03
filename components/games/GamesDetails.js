@@ -83,7 +83,7 @@ const GameDetails = ({ categoryName }) => {
   return (
     <section>
       <ToastContainer />
-      <div className="mx-auto max-w-screen-xl px-4 pt-8 pb-20 sm:px-6 sm:py-12 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 md:py-4 pb-16 lg:px-8">
         <ul className="mt-8 mb-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {gameProducts?.map((item, index) => (
             <div key={index}>
@@ -109,13 +109,13 @@ const GameDetails = ({ categoryName }) => {
                 <div className="flex justify-between mt-4 items-center">
                   <button
                     onClick={() => handleBuyNowClick(item)}
-                    className="bg-purple-600 text-white rounded-sm px-2 py-1"
+                    className="bg-purple-600 text-white rounded-md px-3 py-2"
                   >
                     Buy Now
                   </button>
                   <button
                     onClick={() => handleAddToCart(item)}
-                    className="bg-blue-600 text-white rounded-sm px-2 py-1"
+                    className="bg-blue-600 text-white rounded-md px-3 py-2"
                   >
                     Add To Cart
                   </button>
