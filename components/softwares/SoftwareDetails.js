@@ -83,10 +83,10 @@ const SoftwareDetails = ({ categoryName }) => {
   }
 
   return (
-    <section>
+    <section className="bg-[#f6f6f6] w-full h-full">
       <ToastContainer />
       <div className="mx-auto max-w-screen-xl px-4 pt-8 pb-20 sm:px-6 sm:py-12 lg:px-8">
-        <ul className="mt-8 mb-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {softwareProducts?.map((item, index) => (
             <div key={index}>
               <Link href={`product-details/${item?._id}`}>
@@ -96,7 +96,7 @@ const SoftwareDetails = ({ categoryName }) => {
                   className="h-64 w-full object-cover rounded-t-md overflow-hidden transition duration-500 group-hover:scale-105 sm:h-72"
                 />
               </Link>
-              <div className="relative border border-gray-100 bg-gray-100 pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
+              <div className="relative bg-white shadow pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
                 <Link
                   href={`product-details/${item?._id}`}
                   className="flex justify-between gap-4 w-full"
@@ -141,7 +141,7 @@ const SoftwareDetails = ({ categoryName }) => {
             </span>
           }
           pageClassName="border border-blue-500 hover:bg-blue-500 hover:text-white w-7 h-7 flex justify-center items-center rounded-md mr-3"
-          containerClassName="flex items-center justify-center mt-8 mb-4"
+          containerClassName="flex items-center justify-center mt-8"
           activeClassName="bg-blue-500 text-white"
         />
       </div>

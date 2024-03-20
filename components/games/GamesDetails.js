@@ -81,10 +81,10 @@ const GameDetails = ({ categoryName }) => {
   }
 
   return (
-    <section>
+    <section className="bg-[#f6f6f6]">
       <ToastContainer />
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 md:py-4 pb-16 lg:px-8">
-        <ul className="mt-8 mb-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {gameProducts?.map((item, index) => (
             <div key={index}>
               <Link href={`product-details/${item?._id}`}>
@@ -94,7 +94,7 @@ const GameDetails = ({ categoryName }) => {
                   className="h-64 w-full object-cover rounded-t-md overflow-hidden transition duration-500 group-hover:scale-105 sm:h-72"
                 />
               </Link>
-              <div className="relative border border-gray-100 bg-gray-100 pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
+              <div className="relative bg-white shadow pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
                 <Link
                   href={`product-details/${item?._id}`}
                   className="flex justify-between gap-4 w-full"

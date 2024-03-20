@@ -25,7 +25,7 @@ const Subscribe = () => {
   };
 
   return (
-    <section className="bg-gray-50">
+    <section className="bg-white">
       <ToastContainer />
       <div className="p-8 md:p-12 lg:px-16 lg:py-24">
         <div className="mx-auto max-w-lg text-center">
@@ -53,7 +53,7 @@ const Subscribe = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email address"
-                className="w-full rounded-md border-gray-200 bg-white p-3 text-gray-700 shadow-sm transition focus:border-white focus:outline-none"
+                className="w-full rounded-md border border-gray-300 bg-white p-3 text-gray-700 shadow-sm transition focus:border-white focus:outline-none"
               />
             </div>
 

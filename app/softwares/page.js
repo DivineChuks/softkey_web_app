@@ -5,10 +5,10 @@ import React from "react";
 const SoftwarePage = () => {
   const categoryName = "Softwares";
   return (
-    <>
+    <div className="bg-[#f6f6f6] w-full">
       <ProductCrumb title="Softwares" />
       <SoftwareDetails categoryName={categoryName} />;
-    </>
+    </div>
   );
 };
 

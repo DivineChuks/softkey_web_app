@@ -4,16 +4,21 @@ import { useEffect, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { FaTimes } from "react-icons/fa";
-import { BiSolidChevronDown } from "react-icons/bi";
+import { CiSearch } from "react-icons/ci";
 import { IoCart } from "react-icons/io5";
 import { useUser, UserButton } from "@clerk/nextjs";
 import CartModal from "../payment/CartModal";
 import { useSelector } from "react-redux";
+import { client } from "../../app/lib/sanity";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
   const [active, setActive] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [search, setSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [showCart, setShowCart] = useState(false);
 
@@ -36,6 +41,14 @@ const Header = () => {
     };
   }, []);
 
+  const handleSearch = async () => {
+    if (!searchTerm.trim()) return; // Ignore empty searches
+    router.push(`/search?term=${encodeURIComponent(searchTerm)}`);
+    setTimeout(() => {
+      setSearch(false);
+    }, 300);
+  };
+
   return (
     <div
       className={`${navStyle} sticky h-[70px] z-50 top-0 p-4 flex items-center`}
@@ -48,12 +61,35 @@ const Header = () => {
             className="w-28 h-[80px] mt-3 object-cover"
           />
         </Link>
-        <div className="hidden text-lg md:flex items-center gap-6">
-          <Link href="/">Home</Link>
-          <Link href="/softwares">Softwares</Link>
-          <Link href="/games">Games</Link>
-          <Link href="/blogs">Blogs</Link>
-        </div>
+        {search ? (
+          <div className="flex flex-row items-center w-[40%]">
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="input-search flex-1 rounded-l-full bg-transparent focus:outline-none border py-2 px-4 border-gray-200"
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button
+              className={`bg-blue-500 rounded-r-full ${
+                active ? "text-black" : "text-white"
+              } px-3 py-[9px]`}
+              onClick={handleSearch}
+            >
+              Search
+            </button>
+          </div>
+        ) : (
+          <div className="hidden text-lg md:flex items-center gap-6">
+            <Link href="/">Home</Link>
+            <Link href="/softwares">Softwares</Link>
+            <Link href="/games">Games</Link>
+            <Link href="/blogs">Blogs</Link>
+            <CiSearch
+              className="cursor-pointer"
+              onClick={() => setSearch((prev) => !prev)}
+            />
+          </div>
+        )}
         <div className="hidden md:flex items-center text-lg gap-6">
           {/* <div className="relative">
             <div

@@ -10,8 +10,8 @@ const page = () => {
   return (
     <>
       <Banner />
-      <GamesCollection />
       <SoftwareCollection />
+      <GamesCollection />
       {/* <WhyChooseUs /> */}
       <Subscribe />
     </>

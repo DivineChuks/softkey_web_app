@@ -92,7 +92,7 @@ const Details = ({ productId }) => {
   };
 
   return (
-    <div className="flex bg-white flex-col w-full py-10 md:py-20">
+    <div className="flex flex-col w-full py-10 md:py-20">
       <ToastContainer />
       <div className="mx-auto max-w-screen-xl w-full">
         <div className="p-4 grid grid-cols md:grid-cols-2 gap-4 items-center">
@@ -130,7 +130,7 @@ const Details = ({ productId }) => {
           </div>
         </div>
       </div>
-      <div className="mt-4">
+      <div className="mt-4 bg-[#f6f6f6]">
         <RelatedProducts products={relatedProducts} />
       </div>
     </div>

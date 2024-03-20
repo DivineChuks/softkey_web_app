@@ -9,9 +9,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useUser } from "@clerk/nextjs";
 import useStripeCheckout from "../hooks/useStripeCheckout";
+import { useRouter } from "next/navigation";
 
 const SoftwareCollection = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const [Softwares, setSoftwares] = useState([]);
   const handleCheckout = useStripeCheckout();
   const { user } = useUser();
@@ -52,7 +54,7 @@ const SoftwareCollection = () => {
   };
 
   return (
-    <section>
+    <section className="bg-[#f6f6f6]">
       <ToastContainer />
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <div className="w-full flex justify-between mb-8">
@@ -74,7 +76,7 @@ const SoftwareCollection = () => {
 
         <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {Softwares?.map((item, index) => (
-            <div key={index}>
+            <div key={index} className="">
               <Link href={`product-details/${item?._id}`}>
                 <img
                   src={urlFor(item?.imageUrl).url()}
@@ -82,7 +84,7 @@ const SoftwareCollection = () => {
                   className="h-64 w-full object-cover rounded-t-md overflow-hidden transition duration-500 group-hover:scale-105 sm:h-72"
                 />
               </Link>
-              <div className="relative border border-gray-100 bg-gray-100 pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
+              <div className="relative bg-white shadow pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
                 <Link
                   href={`product-details/${item?._id}`}
                   className="flex justify-between gap-4 w-full"

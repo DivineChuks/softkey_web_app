@@ -8,7 +8,7 @@ const page = () => {
   const params = useParams();
   const productId = params.id;
   return (
-    <div className="px-4 py-10">
+    <div className="px-4 py-10 bg-[#f6f6f6]">
       <ProductCrumb title="Product-details" />
       <Details productId={productId} />
     </div>

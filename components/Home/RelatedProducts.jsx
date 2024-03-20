@@ -32,7 +32,7 @@ const RelatedProducts = ({ products }) => {
   };
 
   return (
-    <section>
+    <section className="bg-[#f6f6f6]">
       <ToastContainer />
       <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 sm:py-12 lg:px-8">
         <div className="w-full flex justify-between">
@@ -50,7 +50,7 @@ const RelatedProducts = ({ products }) => {
                   className="h-64 w-full object-cover rounded-t-md overflow-hidden transition duration-500 group-hover:scale-105 sm:h-72"
                 />
               </Link>
-              <div className="relative border border-gray-100 bg-gray-100 pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
+              <div className="relative bg-white shadow pt-6 pb-4 px-3 flex flex-col gap-2 rounded-b-md">
                 <Link
                   Link
                   href={`/product-details/${item?._id}`}
