@@ -100,7 +100,7 @@ const Details = ({ productId }) => {
             {productDetails.imageUrl && (
               <img
                 src={urlFor(productDetails.imageUrl).url()}
-                className="w-full h-[450px] object-cover rounded-md"
+                className="w-full h-[450px] object-fill rounded-md"
               />
             )}
           </div>
@@ -116,13 +116,13 @@ const Details = ({ productId }) => {
             <div className="flex flex-col md:flex-row gap-2">
               <button
                 onClick={() => handleAddToCart(productDetails)}
-                className="flex gap-1 bg-blue-500 px-4 rounded-md text-white py-2 items-center text-lg"
+                className="flex gap-1 bg-blue-500 px-4 rounded-md text-white py-2 items-center text-lg transition duration-300 ease-in-out hover:bg-black"
               >
                 <MdOutlineShoppingCart /> Add To Cart
               </button>
               <button
                 onClick={() => handleBuyNowClick(productDetails)}
-                className="px-4 py-2 bg-purple-500 border text-lg rounded-md text-white "
+                className="px-4 py-2 bg-purple-500 border text-lg rounded-md text-white transition duration-300 ease-in-out hover:bg-black"
               >
                 Checkout Now
               </button>

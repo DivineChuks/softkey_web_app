@@ -10,6 +10,8 @@ import { useUser, UserButton } from "@clerk/nextjs";
 import CartModal from "../payment/CartModal";
 import { useSelector } from "react-redux";
 import { client } from "../../app/lib/sanity";
+import { FaChevronUp } from "react-icons/fa6";
+import { FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
@@ -21,10 +23,14 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [showCart, setShowCart] = useState(false);
+  const [productCategories, setProductCategories] = useState(null);
+  const [showSoftwareCategories, setShowSoftwareCategories] = useState(false);
+  const [showGamesCategories, setShowGamesCategories] = useState(false);
+  const [categoryTitle, setCategoryTitle] = useState("");
 
   const { user } = useUser();
 
-  console.log("user--->", user);
+  console.log("categories--->", productCategories);
 
   const isActive = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false);
@@ -41,6 +47,26 @@ const Header = () => {
     };
   }, []);
 
+  const handleSoftware = () => {
+    router.push("/softwares");
+    setShowSoftwareCategories(false);
+  };
+
+  const handleCategoryClick = (id) => {
+    router.push(`/product-details/${id}`);
+    setShowSoftwareCategories(false);
+  };
+
+  const handleGame = () => {
+    router.push("/games");
+    setShowGamesCategories(false);
+  };
+
+  const handleGameClick = (id) => {
+    router.push(`/product-details/${id}`);
+    setShowGamesCategories(false);
+  };
+
   const handleSearch = async () => {
     if (!searchTerm.trim()) return; // Ignore empty searches
     router.push(`/search?term=${encodeURIComponent(searchTerm)}`);
@@ -49,14 +75,36 @@ const Header = () => {
     }, 300);
   };
 
+  useEffect(() => {
+    const query = `
+      *[_type == "product" && category->name == "${categoryTitle}"] {
+        _id,
+        name,
+        "imageUrl": images[0].asset->url,
+        description,
+        slug,
+        price,
+        category->{
+          name
+        }
+      }
+    `;
+    client
+      .fetch(query)
+      .then((data) => {
+        setProductCategories(data);
+      })
+      .catch(console.error);
+  }, [categoryTitle]);
+
   return (
     <div
-      className={`${navStyle} sticky h-[70px] z-50 top-0 p-4 flex items-center`}
+      className={`sticky h-[70px] z-50 top-0 p-4 flex items-center bg-white text-black shadow-md`}
     >
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="relative container mx-auto flex justify-between items-center">
         <Link href="/">
           <img
-            src={active ? "logoblack.png" : "logowhite.png"}
+            src="/logoblack.png"
             alt="Logo"
             className="w-28 h-[80px] mt-3 object-cover"
           />
@@ -79,10 +127,91 @@ const Header = () => {
             </button>
           </div>
         ) : (
-          <div className="hidden text-lg md:flex items-center gap-6">
+          <div className="hidden text-lg md:flex items-center gap-6 ">
             <Link href="/">Home</Link>
-            <Link href="/softwares">Softwares</Link>
-            <Link href="/games">Games</Link>
+            <div
+              className="flex items-center gap-1"
+              onMouseEnter={() => {
+                setShowSoftwareCategories(true);
+                setCategoryTitle("Softwares");
+              }}
+            >
+              <p className="cursor-pointer">Softwares</p>
+              {showSoftwareCategories ? (
+                <FaChevronUp size="13" />
+              ) : (
+                <FaChevronDown size="13" />
+              )}
+              {showSoftwareCategories && (
+                <div
+                  className="absolute left-0 w-full px-2 right-0 grid grid-cols-4 mx-auto bg-gray-900 text-white h-max top-[70px] mt-2 py-2 rounded shadow"
+                  // onMouseEnter={() => setShowSoftwareCategories(true)}
+                  onMouseLeave={() => setShowSoftwareCategories(false)}
+                >
+                  {productCategories?.slice(0, 15)?.map((category, index) => (
+                    <>
+                      <div
+                        key={index}
+                        onClick={() => handleCategoryClick(category?._id)}
+                        className="px-4 py-2 cursor-pointer hover:text-blue-500"
+                      >
+                        {category.name}
+                      </div>
+                    </>
+                  ))}
+                  <div
+                    className="text-blue-500 flex justify-start cursor-pointer mt-3 pl-3"
+                    onClick={handleSoftware}
+                  >
+                    View all
+                  </div>
+                </div>
+              )}
+            </div>
+            <div
+              className="flex items-center gap-1"
+              onMouseEnter={() => {
+                setShowGamesCategories(true);
+                setCategoryTitle("Games");
+              }}
+            >
+              <p className="cursor-pointer">Games</p>
+              {showGamesCategories ? (
+                <FaChevronUp size="13" />
+              ) : (
+                <FaChevronDown size="13" />
+              )}
+              {showGamesCategories && (
+                <div
+                  className="absolute left-0 w-full px-2 right-0 grid grid-cols-4 mx-auto bg-gray-900 text-white h-max top-[70px] mt-2 py-2 rounded shadow"
+                  onMouseEnter={() => {
+                    setShowGamesCategories(true);
+                    setCategoryTitle("Games");
+                  }}
+                  onMouseLeave={() => {
+                    setShowGamesCategories(false);
+                  }}
+                >
+                  {productCategories?.slice(0, 15)?.map((category, index) => (
+                    <>
+                      <div
+                        key={index}
+                        onClick={() => handleGameClick(category?._id)}
+                        className="px-4 py-2 cursor-pointer hover:text-blue-500"
+                      >
+                        {category.name}
+                      </div>
+                    </>
+                  ))}
+                  <div
+                    className="text-blue-500 flex justify-start cursor-pointer mt-3 pl-3"
+                    onClick={handleGame}
+                  >
+                    View all
+                  </div>
+                </div>
+              )}
+            </div>
             <Link href="/blogs">Blogs</Link>
             <CiSearch
               className="cursor-pointer"

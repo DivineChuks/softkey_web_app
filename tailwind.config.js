@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        crumb: "url('/crumb.jpg')",
+        crumb: "url('/gameOne.jpg')",
       },
     },
   },
