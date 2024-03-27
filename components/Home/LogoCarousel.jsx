@@ -9,7 +9,7 @@ const logos = [
   "/stripe.png",
   "/visa.png",
   "/pay.png",
-  "/paypaL.png",
+  "/paypal.png",
   "/mastercard.png",
 ];
 
