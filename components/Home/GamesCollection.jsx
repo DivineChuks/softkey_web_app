@@ -46,13 +46,10 @@ const GamesCollection = () => {
   };
 
   const handleAddToCart = (product) => {
-    if (!user) {
-      router.push("/sign-in");
-    } else {
-      dispatch(addToCart(product));
-      toast.success("product added to cart!");
-    }
+    dispatch(addToCart(product));
+    toast.success("product added to cart!");
   };
+
   return (
     <section className="bg-[#f6f6f6]">
       <ToastContainer />

@@ -18,12 +18,8 @@ const Details = ({ productId }) => {
   const handleCheckout = useStripeCheckout();
 
   const handleAddToCart = (product) => {
-    if (!user) {
-      router.push("/sign-in");
-    } else {
-      dispatch(addToCart(product));
-      toast.success("product added to cart!");
-    }
+    dispatch(addToCart(product));
+    toast.success("product added to cart!");
   };
 
   useEffect(() => {

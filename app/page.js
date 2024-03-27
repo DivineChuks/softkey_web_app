@@ -1,19 +1,18 @@
 import React from "react";
-import Banner from "../components/Home/Banner";
+import Hero from "../components/Home/Hero";
 import GamesCollection from "../components/Home/GamesCollection";
 import SoftwareCollection from "../components/Home/SoftwareCollection";
-import Subscribe from "../components/Home/Subscribe";
-// import Subscribe from "@/components/Home/Subscribe";
-// import Banner from "@/components/Home/Banner";
+import ShowCase from "../components/Home/ShowCase";
+import LogoCarousel from "../components/Home/LogoCarousel";
 
 const page = () => {
   return (
     <>
-      <Banner />
+      <Hero />
       <SoftwareCollection />
       <GamesCollection />
-      {/* <WhyChooseUs /> */}
-      <Subscribe />
+      <ShowCase />
+      <LogoCarousel />
     </>
   );
 };

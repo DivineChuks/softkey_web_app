@@ -12,13 +12,10 @@ const RelatedProducts = ({ products }) => {
   const dispatch = useDispatch();
   const handleCheckout = useStripeCheckout();
   const { user } = useUser();
+
   const handleAddToCart = (product) => {
-    if (!user) {
-      router.push("/sign-in");
-    } else {
-      dispatch(addToCart(product));
-      toast.success("product added to cart!");
-    }
+    dispatch(addToCart(product));
+    toast.success("product added to cart!");
   };
 
   const handleBuyNowClick = (item) => {

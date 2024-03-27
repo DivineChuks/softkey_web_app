@@ -58,12 +58,8 @@ const GameDetails = ({ categoryName }) => {
   };
 
   const handleAddToCart = (item) => {
-    if (!user) {
-      router.push("/sign-in");
-    } else {
-      dispatch(addToCart(item));
-      toast.success("product added to cart!");
-    }
+    dispatch(addToCart(item));
+    toast.success("product added to cart!");
   };
 
   const handleBuyNowClick = (game) => {

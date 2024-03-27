@@ -22,9 +22,12 @@
     "react-paginate": "^8.2.0",
     "react-redux": "^9.1.0",
     "react-responsive-carousel": "^3.2.23",
+    "react-slick": "^0.30.2",
+    "react-slideshow-image": "^4.3.1",
     "react-toastify": "^10.0.4",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
+    "slick-carousel": "^1.8.1",
     "stripe": "^14.18.0",
     "use-shopping-cart": "^3.2.0"
   },
