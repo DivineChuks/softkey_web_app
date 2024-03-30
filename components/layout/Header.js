@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FiMenu } from "react-icons/fi";
+import { FiGlobe, FiMenu, FiPhoneCall } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { FaTimes } from "react-icons/fa";
-import { CiSearch } from "react-icons/ci";
+import FeatureBar from "./FeatureBar";
 import { IoCart } from "react-icons/io5";
 import { useUser, UserButton } from "@clerk/nextjs";
 import CartModal from "../payment/CartModal";
@@ -117,7 +117,8 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="flex flex-col">
+      <FeatureBar />
       <div
         className={`h-[110px] p-4 flex items-center bg-white text-black shadow-md`}
       >
@@ -143,37 +144,29 @@ const Header = () => {
               Search
             </button>
           </div>
-          <div className="hidden md:flex items-center text-lg gap-8">
-            <div
-              className="cursor-pointer relative"
-              onClick={() => setShowCart(!showCart)}
-            >
-              <IoCart size={25} />
-              <div className="absolute top-[-8px] z-50 right-[-8px] text-[12px] flex justify-center items-center rounded-full bg-blue-500 text-white w-[18px] h-[18px] p-2">
-                {cartItems?.length}
+          <div className="flex justify-start items-center space-x-4">
+            {/* 24/7 Support Section */}
+            <div className="flex items-center space-x-2 cursor-pointer">
+              <FiPhoneCall className="text-indigo-600" size={24} />
+              <div className="flex flex-col">
+                <span className="font-semibold text-base">24/7 Support</span>
+                <a
+                  href="mailto:info@cdkeyzone.com"
+                  className="text-sm text-gray-500"
+                >
+                  inf@cdkeyzone.com
+                </a>
               </div>
             </div>
-            {user ? (
-              <div className="flex gap-2 items-center">
-                <UserButton afterSignOutUrl="/" />
-                <h3>{user?.firstName}</h3>
+
+            {/* Worldwide Instant Delivery Section */}
+            <div className="hidden md:flex items-center space-x-2">
+              <FiGlobe className="text-indigo-600" size={24} />
+              <div className="flex flex-col">
+                <span className="font-semibold text-base">Worldwide</span>
+                <span className="text-sm text-gray-500">Instant Delivery</span>
               </div>
-            ) : (
-              <div className="flex items-center gap-3">
-                <Link
-                  className="bg-gray-900 px-3 py-1 rounded-md text-white"
-                  href="/sign-up"
-                >
-                  Register
-                </Link>
-                <Link
-                  className="bg-transparent border border-gray-900 rounded-md px-3 py-1 hover:bg-gray-900 hover:text-white text-gray-900"
-                  href="/sign-in"
-                >
-                  Login
-                </Link>
-              </div>
-            )}
+            </div>
           </div>
           <div className="flex md:hidden">
             <button className="cursor-pointer" onClick={() => setIsOpen(true)}>
@@ -225,35 +218,6 @@ const Header = () => {
                   <Link href="/blogs" onClick={() => setIsOpen(false)}>
                     Blogs
                   </Link>
-                  <div
-                    className="cursor-pointer relative w-8"
-                    onClick={() => setShowCart(!showCart)}
-                  >
-                    <IoCart size={25} />
-                    <div className="absolute top-0 right-[-10px] md:top-[-8px] md:right-[-8px] text-[12px] flex justify-center items-center rounded-full bg-blue-500 text-white w-[18px] h-[18px] p-2">
-                      {cartItems?.length}
-                    </div>
-                  </div>
-                  {user ? (
-                    <UserButton afterSignOutUrl="/" />
-                  ) : (
-                    <div className="flex flex-col gap-4 w-full">
-                      <Link
-                        className="bg-blue-600 px-3 py-1 rounded-md w-full text-white"
-                        href="/sign-up"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        Register
-                      </Link>
-                      <Link
-                        className="bg-transparent w-full border border-blue-600 rounded-md px-3 py-1 hover:bg-blue-600 hover:text-white text-blue-600"
-                        href="/sign-in"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        Login
-                      </Link>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -268,92 +232,127 @@ const Header = () => {
           setShowGamesCategories(false);
           setShowSoftwareCategories(false);
         }}
-        className="hidden sticky z-50 top-10 w-full h-14 bg-gray-900 justify-center text-white text-lg md:flex items-center gap-6 "
+        style={{ position: "sticky", top: 0 }}
+        className="hidden sticky z-50 top-0 left-0 px-10 w-full h-16 bg-gray-900 text-white text-lg md:flex items-center justify-between "
       >
-        <Link href="/">Home</Link>
-        <div
-          className="flex items-center gap-1"
-          onMouseEnter={() => {
-            setShowSoftwareCategories(true);
-            fetchSoftwareCat();
-          }}
-        >
-          <p className="cursor-pointer">Softwares</p>
-          {showSoftwareCategories ? (
-            <FaChevronUp size="13" />
-          ) : (
-            <FaChevronDown size="13" />
-          )}
-          {showSoftwareCategories && (
-            <div
-              className="absolute left-0 w-full z-50 px-2 right-0 grid grid-cols-4 mx-auto top-[50px] bg-white text-gray-900 h-max  mt-2 py-6 rounded shadow"
-              // onMouseEnter={() => setShowSoftwareCategories(true)}
-              onMouseLeave={() => setShowSoftwareCategories(false)}
-            >
-              {productCategories?.slice(0, 15)?.map((category, index) => (
-                <>
-                  <div
-                    key={index}
-                    onClick={() => handleCategoryClick(category?._id)}
-                    className="px-4 py-2 uppercase cursor-pointer text-sm hover:text-blue-600"
-                  >
-                    {category.name}
-                  </div>
-                </>
-              ))}
+        <div></div>
+        <div className="flex items-center gap-6">
+          <Link href="/">Home</Link>
+          <div
+            className="flex items-center gap-1"
+            onMouseEnter={() => {
+              setShowSoftwareCategories(true);
+              fetchSoftwareCat();
+            }}
+          >
+            <p className="cursor-pointer">Softwares</p>
+            {showSoftwareCategories ? (
+              <FaChevronUp size="13" />
+            ) : (
+              <FaChevronDown size="13" />
+            )}
+            {showSoftwareCategories && (
               <div
-                className="text-blue-500 text-base  flex justify-start cursor-pointer mt-3 pl-3"
-                onClick={handleSoftware}
+                className="absolute left-0 w-full z-50 px-2 right-0 grid grid-cols-4 mx-auto top-[50px] bg-white text-gray-900 h-max  mt-2 py-6 rounded shadow"
+                // onMouseEnter={() => setShowSoftwareCategories(true)}
+                onMouseLeave={() => setShowSoftwareCategories(false)}
               >
-                VIEW ALL
+                {productCategories?.slice(0, 15)?.map((category, index) => (
+                  <>
+                    <div
+                      key={index}
+                      onClick={() => handleCategoryClick(category?._id)}
+                      className="px-4 py-2 uppercase cursor-pointer text-sm hover:text-blue-600"
+                    >
+                      {category.name}
+                    </div>
+                  </>
+                ))}
+                <div
+                  className="text-blue-500 text-base  flex justify-start cursor-pointer mt-3 pl-3"
+                  onClick={handleSoftware}
+                >
+                  VIEW ALL
+                </div>
               </div>
+            )}
+          </div>
+          <div
+            className="flex items-center gap-1"
+            onMouseEnter={() => {
+              setShowGamesCategories(true);
+              fetchGameCat();
+            }}
+          >
+            <p className="cursor-pointer">Games</p>
+            {showGamesCategories ? (
+              <FaChevronUp size="13" />
+            ) : (
+              <FaChevronDown size="13" />
+            )}
+            {showGamesCategories && (
+              <div
+                className="absolute left-0 w-full px-2 right-0 grid grid-cols-4 mx-auto bg-white text-gray-900 h-max top-[50px] mt-2 py-6 rounded shadow"
+                onMouseEnter={() => {
+                  setShowGamesCategories(true);
+                }}
+                onMouseLeave={() => {
+                  setShowGamesCategories(false);
+                }}
+              >
+                {productCategories?.slice(0, 15)?.map((category, index) => (
+                  <>
+                    <div
+                      key={index}
+                      onClick={() => handleGameClick(category?._id)}
+                      className="px-4 py-2 uppercase cursor-pointer text-sm hover:text-blue-600"
+                    >
+                      {category.name}
+                    </div>
+                  </>
+                ))}
+                <div
+                  className="text-blue-500 flex justify-start uppercase cursor-pointer mt-3 pl-3"
+                  onClick={handleGame}
+                >
+                  View all
+                </div>
+              </div>
+            )}
+          </div>
+          <Link href="/blogs">Blogs</Link>
+        </div>
+        <div className="flex md:flex-row items-center gap-6">
+          <div
+            className="cursor-pointer relative w-8"
+            onClick={() => setShowCart(!showCart)}
+          >
+            <IoCart size={25} />
+            <div className="absolute top-0 right-[-10px] md:top-[-8px] md:right-[-8px] text-[12px] flex justify-center items-center rounded-full bg-blue-500 text-white w-[18px] h-[18px] p-2">
+              {cartItems?.length}
+            </div>
+          </div>
+          {user ? (
+            <UserButton afterSignOutUrl="/" />
+          ) : (
+            <div className="flex flex-col md:flex-row gap-4">
+              <Link
+                className="bg-white px-3 py-1 rounded-md w-full text-gray-800"
+                href="/sign-up"
+                onClick={() => setIsOpen(false)}
+              >
+                Register
+              </Link>
+              <Link
+                className="bg-transparent w-full border border-white rounded-md px-3 py-1 hover:bg-white hover:text-gray-800 text-white"
+                href="/sign-in"
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </Link>
             </div>
           )}
         </div>
-        <div
-          className="flex items-center gap-1"
-          onMouseEnter={() => {
-            setShowGamesCategories(true);
-            fetchGameCat();
-          }}
-        >
-          <p className="cursor-pointer">Games</p>
-          {showGamesCategories ? (
-            <FaChevronUp size="13" />
-          ) : (
-            <FaChevronDown size="13" />
-          )}
-          {showGamesCategories && (
-            <div
-              className="absolute left-0 w-full px-2 right-0 grid grid-cols-4 mx-auto bg-white text-gray-900 h-max top-[50px] mt-2 py-6 rounded shadow"
-              onMouseEnter={() => {
-                setShowGamesCategories(true);
-              }}
-              onMouseLeave={() => {
-                setShowGamesCategories(false);
-              }}
-            >
-              {productCategories?.slice(0, 15)?.map((category, index) => (
-                <>
-                  <div
-                    key={index}
-                    onClick={() => handleGameClick(category?._id)}
-                    className="px-4 py-2 uppercase cursor-pointer text-sm hover:text-blue-600"
-                  >
-                    {category.name}
-                  </div>
-                </>
-              ))}
-              <div
-                className="text-blue-500 flex justify-start uppercase cursor-pointer mt-3 pl-3"
-                onClick={handleGame}
-              >
-                View all
-              </div>
-            </div>
-          )}
-        </div>
-        <Link href="/blogs">Blogs</Link>
       </div>
     </div>
   );

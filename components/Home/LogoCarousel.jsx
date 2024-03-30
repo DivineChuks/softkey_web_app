@@ -11,6 +11,8 @@ const logos = [
   "/pay.png",
   "/paypal.png",
   "/mastercard.png",
+  "/pi.jpg",
+  "/bitcoin.png",
 ];
 
 const LogoCarousel = () => {
